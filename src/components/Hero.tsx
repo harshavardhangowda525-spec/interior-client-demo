@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, hasFinePointer, isSmallScreen, prefersReducedMotion, SplitText } from '../lib/motion'
 import { site } from '../config/site'
+import { asset } from '../lib/asset'
 
 /** Chair finishes — the Soda "flavours", re-imagined as material pairings. */
 const finishes = [
@@ -8,7 +9,7 @@ const finishes = [
     id: 'walnut-linen',
     label: 'Walnut',
     sub: 'Oat linen',
-    wood: '/textures/walnut.jpg',
+    wood: asset('textures/walnut.jpg'),
     woodTint: '#ffffff',
     fabric: '#a8927a',
     metal: '#7d5e3f',
@@ -19,7 +20,7 @@ const finishes = [
     id: 'oak-ivory',
     label: 'White Oak',
     sub: 'Ivory bouclé',
-    wood: '/textures/oak.jpg',
+    wood: asset('textures/oak.jpg'),
     woodTint: '#ffffff',
     fabric: '#e9e1d2',
     metal: '#a88a62',
@@ -30,7 +31,7 @@ const finishes = [
     id: 'smoked-taupe',
     label: 'Smoked Oak',
     sub: 'Taupe velvet',
-    wood: '/textures/oak.jpg',
+    wood: asset('textures/oak.jpg'),
     woodTint: '#5b4a3c',
     fabric: '#6f5f55',
     metal: '#3a3633',
@@ -358,7 +359,7 @@ export function Hero() {
       <div className="hero-media" aria-hidden="true">
         <div className="zoom">
           {videoFailed ? (
-            <img src="/images/hero-poster.webp" alt="" />
+            <img src={asset('images/hero-poster.webp')} alt="" />
           ) : (
             <video
               autoPlay
@@ -366,11 +367,11 @@ export function Hero() {
               loop
               playsInline
               preload="metadata"
-              poster="/images/hero-poster.webp"
+              poster={asset('images/hero-poster.webp')}
               onError={() => setVideoFailed(true)}
             >
-              <source src="/video/hero-1280.webm" type="video/webm" />
-              <source src="/video/hero-1280.mp4" type="video/mp4" />
+              <source src={asset('video/hero-1280.webm')} type="video/webm" />
+              <source src={asset('video/hero-1280.mp4')} type="video/mp4" />
             </video>
           )}
         </div>
@@ -390,7 +391,7 @@ export function Hero() {
             ref={(node: HTMLElement | null) => {
               mv.current = node as MVElement | null
             }}
-            src="/models/lounge-chair.glb"
+            src={asset('models/lounge-chair.glb')}
             alt="3D lounge chair in the selected wood and fabric finish"
             camera-orbit="-32deg 76deg 105%"
             field-of-view="28deg"
@@ -458,7 +459,7 @@ export function Hero() {
                 >
                   <span className="chips" aria-hidden="true">
                     <span style={{ backgroundImage: `url(${f.wood})`, backgroundColor: f.woodTint, backgroundBlendMode: 'multiply' }} />
-                    <span style={{ backgroundImage: 'url(/textures/linen.jpg)', backgroundColor: f.fabric, backgroundBlendMode: 'multiply' }} />
+                    <span style={{ backgroundImage: `url(${asset('textures/linen.jpg')})`, backgroundColor: f.fabric, backgroundBlendMode: 'multiply' }} />
                   </span>
                   <span className="block text-[0.72rem] font-semibold">{f.label}</span>
                   <span className="block text-[0.68rem] text-white/60">{f.sub}</span>
@@ -518,7 +519,7 @@ function Tile({ i, t, finish }: { i: number; t: (typeof TILE_LAYOUT)[number]; fi
       <div
         className="swatch h-full w-full"
         style={{
-          backgroundImage: `url(/textures/${tex}.jpg)`,
+          backgroundImage: `url(${asset(`textures/${tex}.jpg`)})`,
           transform: `perspective(500px) rotateX(${(i * 23) % 40 - 20}deg) rotateY(${(i * 37) % 50 - 25}deg)`,
         }}
       />
@@ -531,7 +532,7 @@ function updateTiles(root: HTMLElement, finish: Finish, only?: HTMLElement) {
   tiles.forEach((tile) => {
     const i = Number(tile.dataset.index)
     const face = tile.firstElementChild as HTMLElement
-    face.style.backgroundImage = `url(/textures/${finish.tiles[(i + 1) % finish.tiles.length]}.jpg)`
+    face.style.backgroundImage = `url(${asset(`textures/${finish.tiles[(i + 1) % finish.tiles.length]}.jpg`)})`
   })
 }
 

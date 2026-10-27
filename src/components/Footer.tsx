@@ -4,7 +4,7 @@ import { sections } from '../data/nav'
 
 export function Footer() {
   const { pathname } = useLocation()
-  const href = (id: string) => (pathname === '/' ? `#${id}` : `/#${id}`)
+  const href = (id: string) => (pathname === '/' ? `#${id}` : `${import.meta.env.BASE_URL}#${id}`)
   const wa = whatsappLink()
   const year = new Date().getFullYear()
 

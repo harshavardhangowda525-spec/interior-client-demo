@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:pages": "BASE_PATH=/interior-client-demo/ VITE_SITE_URL=https://harshavardhangowda525-spec.github.io/interior-client-demo vite build && tsc -b && cp dist/index.html dist/404.html && touch dist/.nojekyll"
   },
   "dependencies": {
     "@google/model-viewer": "^4.4.0",

@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { projects } from './src/data/projects'
 
 /** Injects JSON-LD and emits sitemap.xml + robots.txt for the configured domain. */
-function seo(siteUrl: string): Plugin {
+function seo(siteUrl: string, base: string): Plugin {
   const url = siteUrl.replace(/\/$/, '')
   const ld = {
     '@context': 'https://schema.org',
@@ -17,7 +17,7 @@ function seo(siteUrl: string): Plugin {
   }
   return {
     name: 'lumora-seo',
-    transformIndexHtml: (html) => html.replace('%LD_JSON%', JSON.stringify(ld)).replaceAll('%SITE_URL%', url),
+    transformIndexHtml: (html) => html.replace('%LD_JSON%', JSON.stringify(ld)).replaceAll('%SITE_URL%', url).replaceAll('%BASE%', base),
     generateBundle() {
       const paths = ['/', ...projects.map((p) => `/projects/${p.slug}`), '/privacy']
       const sitemap =
@@ -33,8 +33,11 @@ function seo(siteUrl: string): Plugin {
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   const siteUrl = env.VITE_SITE_URL || 'https://example.com'
+  // Sub-path deploys (e.g. GitHub Pages project sites) set BASE_PATH=/repo-name/
+  const base = env.BASE_PATH || '/'
   return {
-    plugins: [react(), tailwindcss(), seo(siteUrl)],
+    base,
+    plugins: [react(), tailwindcss(), seo(siteUrl, base)],
     build: {
       chunkSizeWarningLimit: 1200,
       rollupOptions: {

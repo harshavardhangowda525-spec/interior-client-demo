@@ -11,7 +11,7 @@ const NotFound = lazy(() => import('./pages/NotFound'))
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <a href="#main" className="skip-link">
         Skip to content
       </a>

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { materials } from '../data/content'
 import { gsap, hasFinePointer, prefersReducedMotion, revealHeading } from '../lib/motion'
+import { asset } from '../lib/asset'
 
 const floating = [
   { id: 'marble', x: 6, y: 8, w: 22, depth: 30, label: 'Marble' },
@@ -108,7 +109,7 @@ export function Materials() {
               style={{ left: `${f.x}%`, top: `${f.y}%`, width: `${f.w}%` }}
             >
               <div className="float-inner" data-depth={f.depth}>
-                <img src={`/images/tex-${f.id}.webp`} alt="" loading="lazy" className="aspect-square w-full rounded-[3px] object-cover shadow-[0_30px_60px_rgba(29,27,25,0.18)]" />
+                <img src={asset(`images/tex-${f.id}.webp`)} alt="" loading="lazy" className="aspect-square w-full rounded-[3px] object-cover shadow-[0_30px_60px_rgba(29,27,25,0.18)]" />
                 <span className="float-label mt-3 flex items-center gap-3 text-[0.65rem] font-semibold tracking-[0.25em] text-[var(--color-muted)]">
                   <span className="h-px w-6 bg-current" />
                   {f.label.toUpperCase()}
@@ -117,7 +118,7 @@ export function Materials() {
             </div>
           ))}
           <div className="absolute left-[44%] top-[6%] w-[24%]">
-            <img src="/images/materials-flatlay.webp" alt="" loading="lazy" className="aspect-square w-full rounded-[3px] object-cover" />
+            <img src={asset('images/materials-flatlay.webp')} alt="" loading="lazy" className="aspect-square w-full rounded-[3px] object-cover" />
           </div>
         </div>
 
@@ -126,7 +127,7 @@ export function Materials() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-[4px] lg:col-span-7 lg:aspect-auto lg:min-h-[36rem]">
             <img
               key={m.id}
-              src={`/images/tex-${m.id}.webp`}
+              src={asset(`images/tex-${m.id}.webp`)}
               alt={`${m.name} texture close-up`}
               className="mat-hero-img absolute inset-0 h-full w-full object-cover"
               loading="lazy"
@@ -151,7 +152,7 @@ export function Materials() {
                       : 'border-black/15 text-[var(--color-charcoal)] hover:border-black/40'
                   }`}
                 >
-                  <span className="h-6 w-6 rounded-full bg-cover bg-center" style={{ backgroundImage: `url(/textures/${mat.id}.jpg)` }} aria-hidden="true" />
+                  <span className="h-6 w-6 rounded-full bg-cover bg-center" style={{ backgroundImage: `url(${asset(`textures/${mat.id}.jpg`)})` }} aria-hidden="true" />
                   {mat.name}
                 </button>
               ))}

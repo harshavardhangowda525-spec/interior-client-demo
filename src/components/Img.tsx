@@ -1,4 +1,5 @@
 import type { ImgHTMLAttributes } from 'react'
+import { asset } from '../lib/asset'
 
 type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet'> & {
   /** Base name in /public/images (WebP), e.g. "proj-ivory". */
@@ -16,8 +17,8 @@ type Props = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src' | 'srcSet'> & {
 export function Img({ name, alt, sizes = '100vw', priority, w = 1024, h = 576, ...rest }: Props) {
   return (
     <img
-      src={`/images/${name}.webp`}
-      srcSet={`/images/${name}-sm.webp 640w, /images/${name}.webp ${w}w`}
+      src={asset(`images/${name}.webp`)}
+      srcSet={`${asset(`images/${name}-sm.webp`)} 640w, ${asset(`images/${name}.webp`)} ${w}w`}
       sizes={sizes}
       alt={alt}
       width={w}

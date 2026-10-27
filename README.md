@@ -65,6 +65,8 @@ Submissions appear in Supabase → Table editor → `enquiries`.
 **Vercel (recommended):** import the repo, framework preset *Vite*, add the env vars above, deploy.
 `vercel.json` handles SPA routes, long-term caching for media and security headers.
 
+**GitHub Pages:** `npm run build:pages` builds for the `/interior-client-demo/` sub-path (with a `404.html` SPA fallback); publish `dist/` to the `gh-pages` branch. The enquiry API does not run on Pages — the form reports that it is not connected until `VITE_ENQUIRY_ENDPOINT` points to a live backend.
+
 Any static host works for the front end (`dist/`), but `/api/enquiry` needs Vercel — or point
 `VITE_ENQUIRY_ENDPOINT` at another backend that accepts the same JSON.
 

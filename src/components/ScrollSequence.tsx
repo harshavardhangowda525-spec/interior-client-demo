@@ -1,8 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { gsap, prefersReducedMotion, ScrollTrigger } from '../lib/motion'
 import { Img } from './Img'
+import { asset } from '../lib/asset'
 
-const VIDEO_SRC = '/video/transformation-1280.mp4'
+const VIDEO_SRC = asset('video/transformation-1280.mp4')
 
 const scenes = [
   { n: '01', label: 'The Empty Space', text: 'Every great space begins with a vision.', image: 'scene-empty', alt: 'An empty contemporary room with sunlight falling across a stone floor' },
@@ -200,7 +201,7 @@ function PinnedSequence() {
             muted
             playsInline
             preload="auto"
-            poster="/images/scene-empty.webp"
+            poster={asset('images/scene-empty.webp')}
             aria-hidden="true"
             className="transition-opacity duration-700"
             style={{ opacity: ready ? 1 : 0 }}
@@ -213,7 +214,7 @@ function PinnedSequence() {
           {['tex-marble', 'tex-travertine', 'tex-oak', 'tex-linen'].map((n) => (
             <img
               key={n}
-              src={`/images/${n}.webp`}
+              src={asset(`images/${n}.webp`)}
               alt=""
               className="seq-swatch h-[clamp(70px,11vh,120px)] w-[clamp(70px,11vh,120px)] rounded-[4px] object-cover shadow-2xl"
               style={{ opacity: 0 }}
@@ -288,7 +289,7 @@ function StackedSequence() {
     if (!v || reduced) return
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
-        if (!v.src) v.src = '/video/transformation-640.mp4'
+        if (!v.src) v.src = asset('video/transformation-640.mp4')
         v.play().catch(() => {})
       } else v.pause()
     })
@@ -302,7 +303,7 @@ function StackedSequence() {
         <article key={s.n} className="stack-scene px-[var(--gutter)] py-8">
           <div className="stack-media relative aspect-[4/5] overflow-hidden rounded-[4px] sm:aspect-video">
             {i === 2 && !reduced ? (
-              <video muted playsInline loop preload="none" poster="/images/scene-sketch-sm.webp" className="h-full w-full object-cover" aria-label="Video: the sketch transforms into the finished room" />
+              <video muted playsInline loop preload="none" poster={asset('images/scene-sketch-sm.webp')} className="h-full w-full object-cover" aria-label="Video: the sketch transforms into the finished room" />
             ) : (
               <Img name={s.image} alt={s.alt} w={1344} h={756} className="h-full w-full object-cover" sizes="100vw" />
             )}

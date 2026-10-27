@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 import { gsap, hasFinePointer, prefersReducedMotion, revealHeading } from '../lib/motion'
 import { Img } from './Img'
+import { asset } from '../lib/asset'
 
 export function Projects() {
   const root = useRef<HTMLElement>(null)
@@ -145,7 +146,7 @@ export function Projects() {
           {projects.map((p) => (
             <img
               key={p.slug}
-              src={`/images/${p.detail}-sm.webp`}
+              src={asset(`images/${p.detail}-sm.webp`)}
               alt=""
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500"

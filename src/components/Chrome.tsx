@@ -93,7 +93,7 @@ export function WhatsAppButton() {
   const label = link ? 'Chat with Lumora Interiors on WhatsApp' : 'WhatsApp number not configured yet — open the enquiry form'
   return (
     <a
-      href={link || '/#contact'}
+      href={link || `${import.meta.env.BASE_URL}#contact`}
       target={link ? '_blank' : undefined}
       rel={link ? 'noopener noreferrer' : undefined}
       aria-label={label}

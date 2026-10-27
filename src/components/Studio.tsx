@@ -3,6 +3,7 @@ import { approach, demoTestimonials } from '../data/content'
 import { trust } from '../config/site'
 import { gsap, prefersReducedMotion, revealHeading } from '../lib/motion'
 import { Img } from './Img'
+import { asset } from '../lib/asset'
 
 /** A. Architectural wireframe: lines draw, become a room outline, then photography takes over. */
 function Wireframe() {
@@ -66,7 +67,7 @@ export function Studio() {
     if (!v || prefersReducedMotion()) return
     const io = new IntersectionObserver(([e]) => {
       if (e.isIntersecting) {
-        if (!v.src) v.src = '/video/studio-ambient.mp4'
+        if (!v.src) v.src = asset('video/studio-ambient.mp4')
         v.play().catch(() => {})
       } else v.pause()
     })
@@ -97,7 +98,7 @@ export function Studio() {
               <Img name="studio-hands" alt="A designer arranging travertine, oak, linen and bronze samples on a drawing" w={1024} h={1024} sizes="(min-width:1024px) 33vw, 100vw" className="h-full w-full object-cover" />
             </div>
             <div className="relative aspect-video overflow-hidden rounded-[4px] bg-[var(--color-charcoal)]">
-              <video className="studio-video h-full w-full object-cover" muted loop playsInline preload="none" poster="/video/studio-ambient-poster.jpg" aria-label="Ambient footage of a calm, minimal interior" />
+              <video className="studio-video h-full w-full object-cover" muted loop playsInline preload="none" poster={asset('video/studio-ambient-poster.jpg')} aria-label="Ambient footage of a calm, minimal interior" />
               <span className="absolute bottom-2 right-3 text-[0.55rem] tracking-wider text-white/50">Stock footage · Mixkit</span>
             </div>
           </div>

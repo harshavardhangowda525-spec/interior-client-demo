@@ -4,6 +4,7 @@ import { site, whatsappLink } from '../config/site'
 import { budgetBands, projectTypes, startWindows, validateEnquiry, type Enquiry, type EnquiryErrors } from '../lib/enquiry'
 import { prefersReducedMotion, revealHeading } from '../lib/motion'
 import { projects } from '../data/projects'
+import { asset } from '../lib/asset'
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -100,7 +101,7 @@ export function Consultation() {
   return (
     <section ref={root} id="contact" className="on-dark relative overflow-hidden bg-[var(--color-ink)] py-28 text-[var(--color-ivory)] lg:py-40" aria-labelledby="contact-title">
       <div className="pointer-events-none absolute inset-0 opacity-25" aria-hidden="true">
-        <img src="/images/scene-finished.webp" alt="" loading="lazy" className="h-full w-full object-cover" />
+        <img src={asset('images/scene-finished.webp')} alt="" loading="lazy" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-ink)] via-[var(--color-ink)]/85 to-[var(--color-ink)]/40" />
       </div>
       <div className="relative mx-auto grid max-w-[1600px] gap-16 px-[var(--gutter)] lg:grid-cols-12">

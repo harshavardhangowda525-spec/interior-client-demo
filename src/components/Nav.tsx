@@ -89,7 +89,7 @@ export function Nav() {
     }
   }, [open])
 
-  const href = (id: string) => (onHome ? `#${id}` : `/#${id}`)
+  const href = (id: string) => (onHome ? `#${id}` : `${import.meta.env.BASE_URL}#${id}`)
   const dark = overDark && !open
   const textColor = dark ? 'text-white' : 'text-[var(--color-charcoal)]'
 
