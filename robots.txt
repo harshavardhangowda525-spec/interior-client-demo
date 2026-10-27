@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harshavardhangowda525-spec.github.io/interior-client-demo/sitemap.xml
